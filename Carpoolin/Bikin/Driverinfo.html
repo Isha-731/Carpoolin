@@ -1,0 +1,136 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+  
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" 
+          content="width=device-width,initial-scale=1.0"> 
+    <title>Responsive Form Card</title> 
+    <link rel="stylesheet" href= 
+"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"> 
+    <link rel="stylesheet" href="driver.css"> 
+</head> 
+  
+<body> 
+    <h1 style="color: black;">Car<span style="color: red;">poolin...</span></h1> 
+    <h3>Driver's Info
+    </h3> 
+    <div class="form-box"> 
+        <div class="textup"> 
+            <i class="fa fa-solid fa-clock"></i> 
+            It only takes two minutes!! 
+        </div> <br>
+        <form action="index.html"> 
+            <label for="uname"> 
+                <i class="fa fa-solid fa-user"></i> 
+                Name 
+            </label> 
+            <input type="text" id="uname" 
+                   name="uname" > 
+  
+            <label for="email"> 
+                <i class="fa fa-solid fa-envelope"></i> 
+                Email Address 
+            </label> 
+            <input type="email" id="email" 
+                   name="email"> 
+  
+            <label for="phone"> 
+                <i class="fa-solid fa-phone"></i> 
+                Phone No 
+            </label> 
+            <input type="tel" id="phone" 
+                   name="phone" > 
+  
+            <label> 
+                <label for="phone" > 
+                    <i class="fa-solid fa-envelope" ></i> 
+                    Enter Your Aadhar Card:
+                </label> 
+                <input type="tel" id="phone" 
+                       name="phone" > 
+      
+                <!-- <label> 
+                <i class="fa-solid fa-face-smile"></i> 
+                Do you satisfy with our service? 
+            </label>  -->
+            <!-- <div class="radio-group"> 
+                <input type="radio" id="yes" 
+                       name="satisfy" value="yes" checked> 
+                <label for="yes">Yes</label> 
+  
+                <input type="radio" id="no" 
+                       name="satisfy" value="no"> 
+                <label for="no">No</label> 
+            </div>  -->
+            <label for="msg"> 
+                <i class="fa-solid fa-comments" 
+                   style="margin-right: 3px;"></i> 
+                Enter Your Address: 
+            </label> 
+            <textarea id="msg" name="msg" 
+                      rows="4" cols="10" > 
+            </textarea> 
+           
+            <div class="container">
+                <div class="wrapper">
+                   
+                   <div class="content">
+                      <div class="icon">
+                         <i class="fas fa-cloud-upload-alt"></i>
+                      </div>
+                      <div class="text">
+                         Pls Upload Your Driving License
+                      </div>
+                   </div>
+                   <div id="cancel-btn">
+                      <i class="fas fa-times"></i>
+                   </div>
+                   <div class="file-name">
+                      File name here
+                   </div>
+                </div>
+                <button onclick="defaultBtnActive()" id="custom-btn">Choose a file</button>
+                <input id="default-btn" type="file" hidden>
+             </div>
+             <br><br>
+             <a href="index.html"><button type="submit"> 
+                Submit 
+            </button> </a>
+             <script>
+                const wrapper = document.querySelector(".wrapper");
+                const fileName = document.querySelector(".file-name");
+                const defaultBtn = document.querySelector("#default-btn");
+                const customBtn = document.querySelector("#custom-btn");
+                const cancelBtn = document.querySelector("#cancel-btn i");
+                const img = document.querySelector("img");
+                let regExp = /[0-9a-zA-Z\^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\.\%\+\~\_ ]+$/;
+                function defaultBtnActive(){
+                  defaultBtn.click();
+                }
+                defaultBtn.addEventListener("change", function(){
+                  const file = this.files[0];
+                  if(file){
+                    const reader = new FileReader();
+                    reader.onload = function(){
+                      const result = reader.result;
+                      img.src = result;
+                      wrapper.classList.add("active");
+                    }
+                    cancelBtn.addEventListener("click", function(){
+                      img.src = "";
+                      wrapper.classList.remove("active");
+                    })
+                    reader.readAsDataURL(file);
+                  }
+                  if(this.value){
+                    let valueStore = this.value.match(regExp);
+                    fileName.textContent = valueStore;
+                  }
+                });
+             </script>
+        </form> 
+    </div> 
+</body> 
+  
+</html>
